@@ -1,1 +1,15 @@
 
+.container {
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    //   background-color: green;
+    overflow: hidden;
+    white-space: nowrap;
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    .scroll {
+      overflow: auto;
+    }
+  }

@@ -1,14 +1,72 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      Givbux user phone contacts
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+    Givbux contacts test with filter using rxjs and  the<b>outdated - deprecated  cordova contacts plugin</b>
+    <p>develop by manunoly</p>
   </div>
+
+  <ion-searchbar mode="ios" class="ion-padding" showCancelButton="true" placeholder="Filter by name, email or phone"
+    debounce="700" (ionChange)="setQuery($event?.detail?.value)">
+  </ion-searchbar>
+
+  <ion-grid class="ion-padding" style="min-height: 300px;">
+
+    <div class="container">
+      <div class="scroll" scrollX="true" *ngIf="!query">
+        <ion-button size="small" (click)="setLetter(item)" [fill]="letter == item?'solid':'clear'"
+          *ngFor="let item of letterD">
+          {{item}}
+        </ion-button>
+      </div>
+    </div>
+
+    <ion-row class="ion-no-padding" *ngIf="invitArray.length > 0">
+      <ion-col offset="6" size="4">
+        <ion-button size="block" size="small" color="primary">
+          Invite Contacts
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="container-2" *ngIf="dataC; else loadingT">
+      <ion-col>
+        <ion-item class="ion-text-wrap ion-no-padding ion-horizontal-padding" *ngFor="let item of filterContacts(dataC)"
+          tappable (click)="selectToInvite(item)">
+          <ion-avatar slot="item-start">
+            <img
+              [src]="item.photos && item.photos != null && item.photos.length > 0 ? getUrl(item.photos[0].value) : 'assets/imgs/avatar.png'">
+          </ion-avatar>
+
+          <ion-label color="primary">
+            <h1 class="text-capitalize">
+              {{ item.displayName }}
+            </h1>
+          </ion-label>
+
+          <ion-button class="ion-no-padding" slot="end" fill="clear" *ngIf="isInvite(item.displayName)">
+            <ion-icon color="primary" name="checkmark"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+
+    <ng-template #loadingT>
+      <div text-center>
+        <ion-spinner></ion-spinner>
+        <h3>
+          Loading ...
+        </h3>
+      </div>
+    </ng-template>
+
+  </ion-grid>
+
 </ion-content>

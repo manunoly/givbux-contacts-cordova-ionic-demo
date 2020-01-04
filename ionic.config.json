@@ -1,5 +1,7 @@
 {
   "name": "givbux-contacts",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
