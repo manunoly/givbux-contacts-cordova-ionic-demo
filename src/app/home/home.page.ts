@@ -106,7 +106,7 @@ export class HomePage {
 
     this.contacts.find(['*'])
       .then(data => {
-        this.dataC = data.filter(x => x.phoneNumbers != null || x.emails != null);
+        this.dataC = data.map(x => { return { 'photos': x.photos ? x.photos : null, 'displayName': x.displayName ? x.displayName : x.name.formatted ? x.name.formatted : x.name.givenName, 'phoneNumbers': x.phoneNumbers ? x.phoneNumbers : null, 'emails': x.emails ? x.emails : null } }).filter(x => x.phoneNumbers != null || x.emails != null);
       })
       .catch(async (error) => {
         alert(` To allow Givbux to access your contacts, you will need to go to your phone setting.<br> 1. Go to Your phone settings.<br> 2. Select Apps & Notification.<br> 3. Choose the Givbux app. <br> 4. Select Permission. <br> 5. Slide the Contacts button to the right which will now be blue.<br> 6. Login to your account.<br> 7. Select Invite friends and contacts will automatically be visible.<br> `);
