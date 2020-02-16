@@ -1,6 +1,6 @@
 # givbux-contacts-cordova-ionic-demo
 
-Sample project, test the cordova-plugin-contacts with ionic 4, for testing purpose, this is not a serious project.
+Givbux Sample project, test the cordova-plugin-contacts with ionic 4, for testing purpose, this is not a serious project.
 
 
 ionic cordova plugin add cordova-plugin-contacts
